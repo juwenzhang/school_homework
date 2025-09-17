@@ -1,0 +1,37 @@
+{
+  "name": "mcp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "rspack serve",
+    "build": "tsc -b && rspack build",
+    "lint": "eslint .",
+    "preview": "serve dist -p 5173"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^6.22.0",
+    "garfish": "^1.4.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "antd": "^5.12.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@rspack/cli": "^0.4.5",
+    "@rspack/core": "^0.4.5",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "serve": "^14.2.1"
+  }
+}

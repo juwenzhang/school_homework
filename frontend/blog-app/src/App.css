@@ -1,0 +1,418 @@
+/* 博客应用全局样式 */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 博客布局样式 */
+.blog-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 头部样式 */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  z-index: 10;
+  height: 64px;
+}
+
+.app-header .logo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+/* 内容区域样式 */
+.app-content {
+  padding: 24px;
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 64px);
+}
+
+.main-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 文章列表区域样式 */
+.article-list-container {
+  flex: 1;
+}
+
+/* 搜索框样式 */
+.search-container {
+  margin-bottom: 24px;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* 文章卡片样式 */
+.article-card {
+  margin-bottom: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.article-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.article-card .ant-card-cover {
+  overflow: hidden;
+  height: 200px;
+}
+
+.article-card .ant-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.article-card:hover .ant-card-cover img {
+  transform: scale(1.05);
+}
+
+.article-card .ant-card-meta-title a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.article-card .ant-card-meta-title a:hover {
+  color: #1890ff;
+}
+
+.article-card .ant-card-meta-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 文章元信息样式 */
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.author-name {
+  font-weight: 500;
+  color: #1890ff;
+}
+
+.publish-time {
+  color: #999;
+}
+
+.category-tag {
+  margin-left: auto;
+}
+
+/* 文章标签样式 */
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.article-tag {
+  background-color: #f0f2f5;
+  color: #666;
+  border: none;
+}
+
+/* 文章统计信息样式 */
+.article-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #999;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.stat-item:hover {
+  color: #1890ff;
+}
+
+/* 用户信息卡片样式 */
+.user-card {
+  margin-bottom: 24px;
+}
+
+.user-info {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.user-avatar {
+  margin: 0 auto 16px;
+  border: 2px solid #1890ff;
+}
+
+.user-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.user-details p {
+  margin: 0;
+  color: #999;
+  font-size: 14px;
+}
+
+/* 分类卡片样式 */
+.category-card {
+  margin-bottom: 24px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-item:hover {
+  color: #1890ff;
+  background-color: #f0f2f5;
+}
+
+.category-name {
+  font-size: 14px;
+}
+
+.category-count {
+  font-size: 12px;
+  color: #999;
+  background-color: #f0f2f5;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.category-item.selected {
+  color: #1890ff;
+  background-color: #e6f7ff;
+}
+
+/* 标签云样式 */
+.tag-card {
+  margin-bottom: 24px;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid #d9d9d9;
+}
+
+.tag-item:hover {
+  color: #1890ff;
+  border-color: #1890ff;
+  background-color: #e6f7ff;
+}
+
+.tag-item.selected {
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+/* 文章详情页样式 */
+.article-detail {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.article-detail h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 24px 0;
+  line-height: 1.4;
+}
+
+.article-detail .article-meta {
+  margin: 24px 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.article-detail .article-category-tags {
+  margin: 16px 0 24px 0;
+}
+
+.article-cover {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 24px;
+  border-radius: 8px;
+}
+
+.article-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.article-content p {
+  margin-bottom: 16px;
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-content h2 {
+  font-size: 22px;
+  margin: 32px 0 16px 0;
+  color: #333;
+}
+
+.article-content h3 {
+  font-size: 20px;
+  margin: 24px 0 12px 0;
+  color: #333;
+}
+
+/* 返回顶部按钮样式 */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 页面容器样式 */
+.blog-home,
+.category-page,
+.tag-page,
+.author-page {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    display: flex;
+    gap: 24px;
+  }
+  
+  .user-card,
+  .category-card,
+  .tag-card {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 16px;
+  }
+  
+  .app-header .logo h1 {
+    font-size: 18px;
+  }
+  
+  .app-content {
+    padding: 16px;
+  }
+  
+  .sidebar {
+    flex-direction: column;
+  }
+  
+  .user-card,
+  .category-card,
+  .tag-card {
+    margin-bottom: 24px;
+  }
+  
+  .article-detail {
+    padding: 20px;
+  }
+  
+  .article-detail h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    height: 56px;
+  }
+  
+  .app-content {
+    padding: 12px;
+  }
+  
+  .article-card .ant-card-cover {
+    height: 150px;
+  }
+  
+  .article-card .ant-card-meta-title a {
+    font-size: 16px;
+  }
+  
+  .article-stats {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

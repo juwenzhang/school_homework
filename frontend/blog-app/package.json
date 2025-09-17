@@ -1,0 +1,53 @@
+{
+  "name": "blog-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "rspack serve",
+    "build": "tsc -b && rspack build",
+    "lint": "eslint .",
+    "preview": "serve dist -p 5174"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "antd": "^5.12.8",
+    "axios": "^1.6.7",
+    "garfish": "^1.4.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^6.22.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@rspack/cli": "^0.4.5",
+    "@rspack/core": "^0.4.5",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "serve": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1"
+  },
+  "garfish": {
+    "name": "blog-app",
+    "entry": "http://localhost:5174/index.html",
+    "activeWhen": "/blog",
+    "sandbox": {
+      "snapshot": true
+    },
+    "props": {
+      "base": "/blog"
+    }
+  }
+}

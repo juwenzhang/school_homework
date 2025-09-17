@@ -1,0 +1,29 @@
+{
+  "jsc": {
+    "target": "es2020",
+    "loose": false,
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": true
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic",
+        "development": false,
+        "refresh": false
+      },
+      "hidden": {
+        "jest": false
+      }
+    },
+    "experimental": {
+      "plugins": []
+    }
+  },
+  "minify": false,
+  "sourceMaps": true
+}

@@ -164,14 +164,3 @@ docker run -d --name blog-user-service --network blog-homework_blog-network -p 8
          memory: "1024M"
    ```
 4. **使用Docker镜像缓存**：构建镜像时利用Docker的缓存机制，加快构建速度
-
-## 安全建议
-
-1. **修改默认密码**：在生产环境中，务必修改数据库、Redis、Nacos等服务的默认密码
-2. **配置HTTPS**：在生产环境中，为API网关配置HTTPS
-3. **设置JWT密钥**：在生产环境中，设置强JWT密钥
-4. **限制容器网络**：使用Docker网络隔离，限制服务之间的访问权限
-5. **定期更新镜像**：定期更新基础镜像和依赖，修复安全漏洞
-
-## 持续集成/持续部署
-可以将构建脚本集成到CI/CD流程中，实现自动化构建、测试和部署。
