@@ -28,10 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 根据用户名查询用户
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("用户不存在: " + username);
-        }
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("用户不存在: " + username));
 
         // 检查用户状态
         if (user.getStatus() != 1) {
@@ -52,9 +50,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 
                 // 添加权限权限
-                Set<Permission> permissions = role.getPermissions();
+                Set<Permission> permissions = role.getPermissionSet();
                 for (Permission permission : permissions) {
-                    authorities.add(new SimpleGrantedAuthority(permission.getPermissionCode()));
+                    authorities.add(new SimpleGrantedAuthority(permission.getCode()));
                 }
             }
 

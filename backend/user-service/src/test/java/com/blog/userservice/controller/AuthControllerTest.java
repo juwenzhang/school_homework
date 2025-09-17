@@ -133,8 +133,8 @@ public class AuthControllerTest {
                 .andReturn().getResponse().getContentAsString();
 
         // 提取token（简化处理，实际项目中可以使用JSON解析器）
-        int tokenStartIndex = responseContent.indexOf("token":"") + 8;
-        int tokenEndIndex = responseContent.indexOf(""", tokenStartIndex);
+        int tokenStartIndex = responseContent.indexOf("\"token\":\"") + 8;
+        int tokenEndIndex = responseContent.indexOf("\"", tokenStartIndex);
         String token = responseContent.substring(tokenStartIndex, tokenEndIndex);
 
         // 使用token访问需要认证的接口
@@ -146,4 +146,4 @@ public class AuthControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.code").value(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data.username").value(username));
     }
-}"}]}}}
+}

@@ -8,6 +8,7 @@ import com.blog.common.entity.Permission;
 import com.blog.common.entity.Role;
 import com.blog.common.entity.User;
 import com.blog.common.exception.RoleException;
+import com.blog.common.util.CacheUtils;
 import com.blog.userservice.repository.PermissionRepository;
 import com.blog.userservice.repository.RoleRepository;
 import com.blog.userservice.service.RoleService;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -35,6 +37,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
+    
+    @Autowired
+    private CacheUtils cacheUtils;
 
     @Override
     public RoleDTO getRoleById(Long id) {
@@ -134,7 +139,7 @@ public class RoleServiceImpl implements RoleService {
         }
         
         // 设置角色的权限
-        role.setPermissions(permissions);
+        role.setPermissions(new ArrayList<>(permissions));
         
         // 保存角色信息
         roleRepository.save(role);

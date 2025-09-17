@@ -81,7 +81,19 @@ public class JwtTokenProvider {
     }
 
     /**
-     * 验证令牌
+     * 验证令牌，验证签名和过期时间
+     */
+    public Boolean validateToken(String token) {
+        try {
+            getAllClaimsFromToken(token);
+            return !isTokenExpired(token);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 验证令牌，验证签名、过期时间和用户名
      */
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);

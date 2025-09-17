@@ -1,14 +1,11 @@
 package com.blog.common.dto;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 统一响应DTO
  */
-@Data
 public class ResponseDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,6 +13,39 @@ public class ResponseDTO<T> implements Serializable {
     private String message;
     private T data;
     private LocalDateTime timestamp = LocalDateTime.now();
+
+    // Getter and Setter methods
+    public Integer getCode() {
+        return code;
+    }
+    
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+    
+    public String getMessage() {
+        return message;
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    public T getData() {
+        return data;
+    }
+    
+    public void setData(T data) {
+        this.data = data;
+    }
+    
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+    
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 
     /**
      * 成功响应
@@ -43,6 +73,28 @@ public class ResponseDTO<T> implements Serializable {
         response.setCode(code);
         response.setMessage(message);
         response.setData(null);
+        return response;
+    }
+    
+    /**
+     * 失败响应（带错误码）
+     */
+    public static ResponseDTO<String> fail(Integer code, String errorCode, String message) {
+        ResponseDTO<String> response = new ResponseDTO<>();
+        response.setCode(code);
+        response.setMessage(message);
+        response.setData(errorCode);
+        return response;
+    }
+    
+    /**
+     * 失败响应（带错误码和数据）
+     */
+    public static <T> ResponseDTO<T> fail(Integer code, String errorCode, String message, T data) {
+        ResponseDTO<T> response = new ResponseDTO<>();
+        response.setCode(code);
+        response.setMessage(message);
+        response.setData(data);
         return response;
     }
 

@@ -1,6 +1,11 @@
 package com.blog.monitorservice.alert.impl;
 
 import com.blog.monitorservice.alert.AlertService;
+import com.blog.monitorservice.alert.model.AlertConfig;
+import com.blog.monitorservice.alert.model.AlertMessage;
+import com.blog.monitorservice.alert.model.AlertStatus;
+import com.blog.monitorservice.alert.model.AlertType;
+import com.blog.monitorservice.alert.model.Severity;
 import com.blog.monitorservice.collector.model.SystemMetrics;
 import com.blog.monitorservice.collector.model.ServiceMetrics;
 import com.blog.monitorservice.collector.model.JvmMetrics;
@@ -101,10 +106,7 @@ public class AlertServiceImpl implements AlertService {
         try {
             // 服务告警逻辑
             String alertKey = "service-" + metrics.getServiceName() + "-" + metrics.getInstanceId();
-            // 这里可以添加服务健康检查逻辑
-            // 例如：检查服务实例是否可用，响应时间是否过长等
-
-            // 示例：检查元数据中的健康状态
+            
             if (metrics.getMetadata() != null) {
                 Object healthStatus = metrics.getMetadata().get("healthStatus");
                 if (healthStatus != null && "UNHEALTHY".equals(healthStatus.toString())) {
@@ -209,7 +211,7 @@ public class AlertServiceImpl implements AlertService {
                 return true;
             }
 
-            // 距离上次告警的时间（毫秒）
+            // 距离上次告警的时间
             long timeSinceLastAlert = System.currentTimeMillis() - status.getLastAlertTime();
             
             // 告警频率限制：10分钟内最多发送一次

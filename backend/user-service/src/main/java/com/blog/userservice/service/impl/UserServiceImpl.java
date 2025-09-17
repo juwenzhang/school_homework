@@ -4,16 +4,19 @@ import com.blog.common.constant.SystemConstants;
 import com.blog.common.dto.PageQueryDTO;
 import com.blog.common.dto.PageResultDTO;
 import com.blog.common.dto.UserDTO;
+import com.blog.common.dto.RoleDTO;
 import com.blog.common.entity.Role;
 import com.blog.common.entity.User;
 import com.blog.common.exception.UserException;
+import com.blog.common.exception.RoleException;
 import com.blog.common.util.CacheUtils;
 import com.blog.common.util.JwtUtils;
 import com.blog.userservice.repository.RoleRepository;
 import com.blog.userservice.repository.UserRepository;
 import com.blog.userservice.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,20 +27,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
-import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * 用户服务实现类
  */
 @Service
-@Slf4j
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;

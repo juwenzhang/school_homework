@@ -1,5 +1,8 @@
 package com.blog.monitorservice.collector;
 
+import com.blog.monitorservice.collector.model.JvmMetrics;
+import com.blog.monitorservice.collector.model.ServiceMetrics;
+import com.blog.monitorservice.collector.model.SystemMetrics;
 import java.util.List;
 import java.util.Map;
 

@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,11 +45,11 @@ public class AuthController {
         // 设置安全上下文
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // 生成JWT令牌
-        String jwt = jwtUtils.generateToken(userDTO.getId(), username);
-
         // 获取用户信息
         UserDTO userDTO = userService.getUserByUsername(username);
+        
+        // 生成JWT令牌
+        String jwt = jwtUtils.generateToken(userDTO.getId(), username);
 
         // 获取IP地址和User Agent
         String ipAddress = getClientIpAddress(request);

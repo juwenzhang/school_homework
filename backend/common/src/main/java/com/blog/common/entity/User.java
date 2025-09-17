@@ -1,7 +1,5 @@
 package com.blog.common.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,7 +12,6 @@ import java.util.Set;
 /**
  * 用户实体类
  */
-@Data
 @Entity
 @Table(name = "blog_user")
 public class User implements Serializable {
@@ -126,6 +123,150 @@ public class User implements Serializable {
      */
     @UpdateTimestamp
     private LocalDateTime updatedTime;
+
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getNickname() {
+        return nickname;
+    }
+    
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getAvatar() {
+        return avatar;
+    }
+    
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
+    public String getBio() {
+        return bio;
+    }
+    
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+    
+    public Integer getStatus() {
+        return status;
+    }
+    
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+    public Integer getGender() {
+        return gender;
+    }
+    
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+    
+    public Boolean getDeleted() {
+        return deleted;
+    }
+    
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+    
+    public Integer getLoginCount() {
+        return loginCount;
+    }
+    
+    public void setLoginCount(Integer loginCount) {
+        this.loginCount = loginCount;
+    }
+    
+    public LocalDateTime getLastLoginTime() {
+        return lastLoginTime;
+    }
+    
+    public void setLastLoginTime(LocalDateTime lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+    
+    public String getIpAddress() {
+        return ipAddress;
+    }
+    
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+    
+    public String getUserAgent() {
+        return userAgent;
+    }
+    
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+    
+    public Set<Role> getRoles() {
+        return roles;
+    }
+    
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+    
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
+    }
+    
+    public LocalDateTime getUpdatedTime() {
+        return updatedTime;
+    }
+    
+    public void setUpdatedTime(LocalDateTime updatedTime) {
+        this.updatedTime = updatedTime;
+    }
 
     /**
      * 添加角色

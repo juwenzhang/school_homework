@@ -1,14 +1,11 @@
 package com.blog.common.dto;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * 分页结果DTO
  */
-@Data
 public class PageResultDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,6 +14,47 @@ public class PageResultDTO<T> implements Serializable {
     private Integer pageSize;
     private Integer totalPages;
     private List<T> list;
+
+    // Getter and Setter methods
+    public Long getTotal() {
+        return total;
+    }
+    
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+    
+    public Integer getPageNum() {
+        return pageNum;
+    }
+    
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+    
+    public Integer getPageSize() {
+        return pageSize;
+    }
+    
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+    
+    public Integer getTotalPages() {
+        return totalPages;
+    }
+    
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
+    }
+    
+    public List<T> getList() {
+        return list;
+    }
+    
+    public void setList(List<T> list) {
+        this.list = list;
+    }
 
     /**
      * 构建分页结果

@@ -1,5 +1,6 @@
 package com.blog.apigateway.filter;
 
+import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -61,10 +62,7 @@ public class RequestLoggingFilter implements GlobalFilter, Ordered {
                         DataBufferUtils.release(dataBuffer);
                         logger.debug("[{}] Request body: {}", requestId, requestBody);
 
-                        // 重新创建请求体
-                        Flux<DataBuffer> body = Flux.just(exchange.getResponse().bufferFactory().wrap(bytes));
-                        ServerHttpRequest newRequest = exchange.getRequest().mutate().body(body).build();
-                        ServerWebExchange newExchange = exchange.mutate().request(newRequest).build();
+                        ServerWebExchange newExchange = exchange.mutate().request(mutatedRequest).build();
 
                         // 记录响应信息
                         return logResponse(newExchange, chain, requestId, path, method, startTime, timestamp);

@@ -43,7 +43,7 @@ public class GlobalFilterConfig implements GlobalFilter, Ordered {
 
     private void logRequest(ServerHttpRequest request, String traceId) {
         String timestamp = LocalDateTime.now().format(formatter);
-        String method = request.getMethodValue();
+        String method = request.getMethod() != null ? request.getMethod().name() : "GET";
         String path = request.getURI().getPath();
         String remoteAddress = request.getRemoteAddress() != null ? request.getRemoteAddress().toString() : "unknown";
         

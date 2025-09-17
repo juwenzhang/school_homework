@@ -1,12 +1,10 @@
 package com.blog.common.exception;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * 自定义业务异常类
  */
-@Getter
 public class BlogException extends RuntimeException {
     private final HttpStatus status;
     private final String errorCode;
@@ -33,5 +31,17 @@ public class BlogException extends RuntimeException {
         super(message);
         this.status = status;
         this.errorCode = errorCode;
+    }
+    
+    public HttpStatus getStatus() {
+        return status;
+    }
+    
+    public String getErrorCode() {
+        return errorCode;
+    }
+    
+    public int getStatusCode() {
+        return status.value();
     }
 }

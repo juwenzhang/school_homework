@@ -1,21 +1,16 @@
 package com.blog.monitorservice.collector.model;
 
-import com.blog.monitorservice.collector.model.JsonBinaryType;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import org.hibernate.annotations.JdbcTypeCode;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Map;
+import java.sql.Types;
 
 @Entity
 @Table(name = "jvm_metrics")
-@TypeDefs({
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
 public class JvmMetrics implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +34,7 @@ public class JvmMetrics implements Serializable {
     @Column(name = "thread_count")
     private Integer threadCount;
 
-    @Type(type = "jsonb")
+    @JdbcTypeCode(Types.OTHER)
     @Column(name = "detailed_metrics", columnDefinition = "jsonb")
     private Map<String, Double> detailedMetrics;
 

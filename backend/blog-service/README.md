@@ -499,4 +499,4 @@ POST /api/tracking/article-views
 ## 部署
 
 - 可以使用Docker容器化部署
-- 支持Kubernetes集群部署（配置文件位于项目根目录的deployment文件夹）
+- 支持Kubernetes集群部署

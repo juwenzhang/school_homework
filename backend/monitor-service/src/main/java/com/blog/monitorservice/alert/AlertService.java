@@ -1,8 +1,11 @@
 package com.blog.monitorservice.alert;
 
-import com.blog.monitorservice.collector.model.SystemMetrics;
-import com.blog.monitorservice.collector.model.ServiceMetrics;
+import com.blog.monitorservice.alert.model.AlertConfig;
+import com.blog.monitorservice.alert.model.AlertMessage;
+import com.blog.monitorservice.alert.model.AlertStatus;
 import com.blog.monitorservice.collector.model.JvmMetrics;
+import com.blog.monitorservice.collector.model.ServiceMetrics;
+import com.blog.monitorservice.collector.model.SystemMetrics;
 
 public interface AlertService {
 
@@ -27,7 +30,7 @@ public interface AlertService {
     void sendAlert(AlertMessage alertMessage);
 
     /**
-     * 检查是否需要发送告警（基于告警频率限制）
+     * 检查是否需要发送告警
      */
     boolean shouldSendAlert(String alertKey);
 

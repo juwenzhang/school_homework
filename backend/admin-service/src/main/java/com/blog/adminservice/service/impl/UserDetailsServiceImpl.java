@@ -31,16 +31,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("用户名或密码错误"));
 
         // 验证用户状态
-        if (!adminUser.getEnabled()) {
+        if (!adminUser.isEnabled()) {
             throw new UsernameNotFoundException("用户已被禁用");
         }
-        if (!adminUser.getAccountNonExpired()) {
+        if (!adminUser.isAccountNonExpired()) {
             throw new UsernameNotFoundException("用户账户已过期");
         }
-        if (!adminUser.getAccountNonLocked()) {
+        if (!adminUser.isAccountNonLocked()) {
             throw new UsernameNotFoundException("用户账户已被锁定");
         }
-        if (!adminUser.getCredentialsNonExpired()) {
+        if (!adminUser.isCredentialsNonExpired()) {
             throw new UsernameNotFoundException("用户凭证已过期");
         }
 
@@ -52,10 +52,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new User(
                 adminUser.getUsername(),
                 adminUser.getPassword(),
-                adminUser.getEnabled(),
-                adminUser.getAccountNonExpired(),
-                adminUser.getCredentialsNonExpired(),
-                adminUser.getAccountNonLocked(),
+                adminUser.isEnabled(),
+                adminUser.isAccountNonExpired(),
+                adminUser.isCredentialsNonExpired(),
+                adminUser.isAccountNonLocked(),
                 authorities
         );
     }

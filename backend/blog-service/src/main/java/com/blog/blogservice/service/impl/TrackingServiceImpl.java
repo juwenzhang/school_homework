@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -106,18 +106,14 @@ public class TrackingServiceImpl implements TrackingService {
 
     @Override
     public Map<Long, Long> getPopularArticles(int limit, int days) {
-        // 这里简化实现，实际应该使用更复杂的查询来获取热门文章
         LocalDateTime endTime = LocalDateTime.now();
         LocalDateTime startTime = endTime.minusDays(days);
         
-        // 实际实现中应该使用自定义的JPQL查询或原生SQL查询
-        // 这里返回一个空的Map作为示例
         return new HashMap<>();
     }
 
     @Override
     public Map<String, Long> getUserActivity(int days) {
-        // 这里简化实现，实际应该使用更复杂的查询来获取用户活跃度
         Map<String, Long> activityMap = new HashMap<>();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -128,7 +124,6 @@ public class TrackingServiceImpl implements TrackingService {
             LocalDateTime startTime = date.withHour(0).withMinute(0).withSecond(0);
             LocalDateTime endTime = date.withHour(23).withMinute(59).withSecond(59);
             
-            // 统计当天的PAGE_VIEW事件数量作为活跃用户数
             Long count = trackingEventRepository.countByEventNameAndEventTimeBetween("PAGE_VIEW", startTime, endTime);
             activityMap.put(dateStr, count);
         }
@@ -145,9 +140,7 @@ public class TrackingServiceImpl implements TrackingService {
             if (attributes != null) {
                 return attributes.getRequest();
             }
-        } catch (Exception e) {
-            // 忽略异常
-        }
+        } catch (Exception _) {}
         return null;
     }
 

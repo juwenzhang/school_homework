@@ -1,11 +1,8 @@
 package com.blog.userservice.exception;
 
-import lombok.Getter;
-
 /**
  * 权限相关异常类
  */
-@Getter
 public class PermissionException extends RuntimeException {
     
     private Integer statusCode = 400;
@@ -29,5 +26,13 @@ public class PermissionException extends RuntimeException {
         super(message);
         this.statusCode = statusCode;
         this.errorCode = errorCode;
+    }
+    
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+    
+    public String getErrorCode() {
+        return errorCode;
     }
 }

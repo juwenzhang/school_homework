@@ -2,22 +2,17 @@ package com.blog.monitorservice.collector.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
-import com.blog.monitorservice.collector.model.JsonBinaryType;
+import org.hibernate.annotations.JdbcTypeCode;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Map;
+import java.sql.Types;
 
 @Entity
 @Table(name = "service_metrics")
-@TypeDefs({
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
 public class ServiceMetrics implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +36,7 @@ public class ServiceMetrics implements Serializable {
     @Column(name = "uri")
     private String uri;
 
-    @Type(type = "jsonb")
+    @JdbcTypeCode(Types.OTHER)
     @Column(name = "metadata", columnDefinition = "jsonb")
     private Map<String, Object> metadata;
 
