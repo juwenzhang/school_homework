@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: admin-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blog_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  redis:
+    host: localhost
+    port: 6379
+    password: ''
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: blog-dev
+
+jwt:
+  secret: 8e3b9d7f6a1c4e2d9b7f3a5c8e6d2b4f7a9d3c5e8b6d2f4a7c9e3b5d8f6a1c4e
+  expiration: 86400000  # 24小时
+  refresh-expiration: 2592000000  # 30天
+
+logging:
+  level:
+    root: INFO
+    com.blog.adminservice: DEBUG
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'

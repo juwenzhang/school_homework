@@ -1,0 +1,70 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: admin-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+      config:
+        server-addr: nacos:8848
+        file-extension: yaml
+  datasource:
+    url: jdbc:postgresql://postgres:5432/blog_db
+    username: blog_user
+    password: blog_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  redis:
+    host: redis
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 1800000
+  security:
+    user:
+      name: admin
+      password: password
+
+# JWT配置
+jwt:
+  secret: ${JWT_SECRET:your-secret-key-for-jwt-token}
+  expiration: 3600000
+
+# Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8084
+  info:
+    env:
+      enabled: true
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.blog: DEBUG
+    org.springframework.security: INFO
+
+# 管理员配置
+admin:
+  page-size: 20
+  default-password: admin123
+  session-timeout: 3600

@@ -1,0 +1,90 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: monitor-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+      config:
+        server-addr: nacos:8848
+        file-extension: yaml
+  datasource:
+    url: jdbc:postgresql://postgres:5432/blog_db
+    username: blog_user
+    password: blog_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  redis:
+    host: redis
+    port: 6379
+
+# 监控配置
+monitor:
+  metrics:
+    collect-interval: 60 # 秒
+    retention-days: 30
+  alert:
+    cpu-threshold: 80 # 百分比
+    memory-threshold: 80 # 百分比
+    disk-threshold: 85 # 百分比
+    response-time-threshold: 5000 # 毫秒
+    error-rate-threshold: 5 # 百分比
+    check-interval: 30 # 秒
+  notification:
+    email:
+      enabled: false
+      host: smtp.example.com
+      port: 587
+      username: username
+      password: password
+      from: from@example.com
+      to: to@example.com
+    webhook:
+      enabled: false
+      url: https://webhook.example.com
+      secret: secret_key
+
+# Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  server:
+    port: 8083
+  info:
+    env:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.blog: DEBUG
+    org.springframework.boot.actuate: INFO

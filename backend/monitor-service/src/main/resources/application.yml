@@ -1,0 +1,103 @@
+server:
+  port: 8040
+  servlet:
+    context-path: /monitor
+
+spring:
+  application:
+    name: monitor-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: blog
+        group: DEFAULT_GROUP
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog_monitor?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: your-email@example.com
+    password: your-email-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# 暴露Prometheus指标
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+  server:
+    port: 8041
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.blog.monitorservice: DEBUG
+  file:
+    name: logs/monitor-service.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# 监控服务配置
+monitor:
+  # 指标收集配置
+  metrics:
+    # 收集间隔（秒）
+    collection-interval: 60
+    # 数据保留天数
+    retention-days: 30
+  # 告警配置
+  alert:
+    # 是否启用告警
+    enabled: true
+    # 系统资源告警阈值
+    threshold:
+      cpu: 80
+      memory: 85
+      disk: 90
+    # 告警频率限制（分钟）
+    frequency-limit: 10
+    # 通知配置
+    notification:
+      email:
+        enabled: false
+        from: alert@blog.com
+        to:
+          - admin@example.com
+          - support@blog.com
+      webhook:
+        enabled: false
+        url: https://webhook.example.com/alert
+      sms:
+        enabled: false
+        provider: twilio
+        api-key: your-api-key
+        phone-numbers:
+          - +1234567890
